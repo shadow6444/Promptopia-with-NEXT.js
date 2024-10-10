@@ -12,18 +12,25 @@ const EditPrompt = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getPromptDetails = async () => {
-      const response = await fetch(`api/prompt/${promptId}`);
+      try {
+        const response = await fetch(`/api/prompt/${promptId}`);
+        const data = await response.json();
 
-      const data = await response.json();
-
-      setPost({
-        prompt: data.prompt,
-        tag: data.tag,
-      });
+        setPost({
+          prompt: data.prompt,
+          tag: data.tag,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching prompt details", error);
+        setLoading(false);
+      }
     };
+
     if (promptId) {
       getPromptDetails();
     }
@@ -55,14 +62,18 @@ const EditPrompt = () => {
   };
 
   return (
-    <Suspense>
-      <Form
-        type="Edit"
-        post={post}
-        setPost={setPost}
-        handleSubmit={updatePrompt}
-        submitting={submitting}
-      />
+    <Suspense fallback={<p>Loading...</p>}>
+      {loading ? (
+        <p>Loading prompt details...</p>
+      ) : (
+        <Form
+          type="Edit"
+          post={post}
+          setPost={setPost}
+          handleSubmit={updatePrompt}
+          submitting={submitting}
+        />
+      )}
     </Suspense>
   );
 };
