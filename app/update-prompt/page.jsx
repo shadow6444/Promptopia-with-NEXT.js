@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
+import { Suspense } from "react/cjs/react.production.min";
 
 const EditPrompt = () => {
   const router = useRouter();
@@ -59,15 +60,16 @@ const EditPrompt = () => {
   };
 
   return (
-    <Form
-      type="Edit"
-      post={post}
-      setPost={setPost}
-      handleSubmit={updatePrompt}
-      submitting={submitting}
-    />
+    <Suspense>
+      <Form
+        type="Edit"
+        post={post}
+        setPost={setPost}
+        handleSubmit={updatePrompt}
+        submitting={submitting}
+      />
+    </Suspense>
   );
 };
-
 
 export default EditPrompt;
