@@ -65,4 +65,6 @@ const EditPrompt = () => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export default EditPrompt;
