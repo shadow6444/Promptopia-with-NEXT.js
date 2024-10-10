@@ -10,6 +10,10 @@ const EditPrompt = () => {
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({});
 
@@ -65,6 +69,5 @@ const EditPrompt = () => {
   );
 };
 
-export const dynamic = "force-dynamic";
 
 export default EditPrompt;
