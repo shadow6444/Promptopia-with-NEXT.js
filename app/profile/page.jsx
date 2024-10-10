@@ -44,7 +44,7 @@ const MyProfile = () => {
     }
   };
   return (
-    <Suspense>
+    <Suspense fallback={<p>Loading...</p>}>
       <Profile
         name="My"
         desc="Welcome to your personalized profile page"
