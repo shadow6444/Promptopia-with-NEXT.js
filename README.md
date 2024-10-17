@@ -1,3 +1,5 @@
+this project is to get already generated prompts to talk to AI and get the solution for that prompt.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
